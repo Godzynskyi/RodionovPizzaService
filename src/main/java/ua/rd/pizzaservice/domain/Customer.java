@@ -37,8 +37,8 @@ public class Customer {
     
     private String name;
     
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Address address;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
+    private List<Address> address;
     
     
     
@@ -71,11 +71,11 @@ public class Customer {
         return "Customer{" + "id=" + id + ", name=" + name + '}';
     }
 
-	public Address getAddress() {
+	public List<Address> getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
 

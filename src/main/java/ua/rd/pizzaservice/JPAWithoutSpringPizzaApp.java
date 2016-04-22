@@ -1,5 +1,7 @@
 package ua.rd.pizzaservice;
 
+import java.util.Arrays;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -23,7 +25,8 @@ public class JPAWithoutSpringPizzaApp {
 	
 		Customer customer = new Customer();
 		customer.setName("Ivan");
-		customer.setAddress(address);
+		customer.setAddress(Arrays.asList(address));
+		address.setCustomer(customer);
 		
 		em.getTransaction().begin();
 		em.persist(customer);
@@ -31,11 +34,6 @@ public class JPAWithoutSpringPizzaApp {
 		
 //		Customer c = em.find(Customer.class, 1);
 //		Address a = c.getAddress();
-		em.clear();
-		Address a = em.find(Address.class, 1);
-		
-		System.out.println(a);
-		System.out.println(a.getCustomer());
 		
 			
 		em.close();

@@ -2,6 +2,7 @@ package ua.rd.pizzaservice.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Embeddable;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,7 +21,7 @@ public class Address {
 	private Integer addressId;
 	private String city;
 	
-	@OneToOne(mappedBy = "address")
+	@ManyToOne
 	private Customer customer;
 	
 	public Integer getId() {
