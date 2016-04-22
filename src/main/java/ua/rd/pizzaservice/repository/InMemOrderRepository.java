@@ -4,10 +4,13 @@ import ua.rd.pizzaservice.domain.Order;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author andrii
  */
+@Repository
 public class InMemOrderRepository implements OrderRepository {
 
     private List<Order> orders = new ArrayList<>();

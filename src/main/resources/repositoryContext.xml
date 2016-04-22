@@ -10,25 +10,29 @@
     
     
     
+<!--     <bean id="customer" class="ua.rd.pizzaservice.domain.Customer"> -->
+<!--         <constructor-arg value="2"/> -->
+<!--         <constructor-arg value="Abcd"/> -->
+<!--     </bean>     -->
     
     
-    <bean name="pizzaRepository" 
-          class="ua.rd.pizzaservice.repository.InMemPizzaRepository" 
-          init-method="cookPizzas" >
-        <property name="pizzas">
-            <list>
-                <bean class="ua.rd.pizzaservice.domain.Pizza">
-                    <constructor-arg index="0" value="1"/>                        
-                    <constructor-arg index="1" value="Pizza 1"/>                
-                    <constructor-arg index="2" value="2.4"/> 
-                    <constructor-arg index="3" value="SEA"/>     
-                </bean>
-            </list>
-        </property>
-    </bean>
+<!--     <bean name="pizzaRepository"  -->
+<!--           class="ua.rd.pizzaservice.repository.InMemPizzaRepository"  -->
+<!--           init-method="cookPizzas" > -->
+<!--         <property name="pizzas"> -->
+<!--             <list> -->
+<!--                 <bean class="ua.rd.pizzaservice.domain.Pizza"> -->
+<!--                     <constructor-arg index="0" value="1"/>                         -->
+<!--                     <constructor-arg index="1" value="Pizza 1"/>                 -->
+<!--                     <constructor-arg index="2" value="2.4"/>  -->
+<!--                     <constructor-arg index="3" value="SEA"/>      -->
+<!--                 </bean> -->
+<!--             </list> -->
+<!--         </property> -->
+<!--     </bean> -->
     
     
-    <bean name="orderRepository" 
-          class="ua.rd.pizzaservice.repository.InMemOrderRepository" />
+<!--     <bean name="orderRepository"  -->
+<!--           class="ua.rd.pizzaservice.repository.InMemOrderRepository" /> -->
         
 </beans>

@@ -2,12 +2,18 @@ package ua.rd.pizzaservice.domain;
 
 
 
+import java.util.Collections;
 import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import ua.rd.pizzaservice.infrustructure.Domain;
 
 /**
  *
  * @author andrii
  */
+@Component
 public class Order {
     private static long count;
     
@@ -52,7 +58,7 @@ public class Order {
     }    
     
     public List<Pizza> getPizzas() {
-        return pizzas;
+        return Collections.unmodifiableList(pizzas);
     }
 
     public void setPizzas(List<Pizza> pizzas) {

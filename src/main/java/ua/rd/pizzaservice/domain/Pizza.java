@@ -1,17 +1,21 @@
 package ua.rd.pizzaservice.domain;
 
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  *
  * @author andrii
  */
+@Entity
 public class Pizza {
     
     public enum PizzaType {
-        SEA, MEAT, VEGAN
+        SEA, MEAT, VEGETERIAN
     }
     
+    @Id 
     private Integer id;
     private String name;
     private Double price;

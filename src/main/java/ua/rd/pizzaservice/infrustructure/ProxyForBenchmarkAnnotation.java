@@ -17,22 +17,25 @@ public class ProxyForBenchmarkAnnotation {
     }
 
     public Object proxyObjForBenchmarkAnnotation() throws Exception {
-        Class<?> clazz = proxied.getClass();
-        System.out.println(clazz);
+        Class<?> clazz = getClazz();
 
         for (Method m : clazz.getMethods()) {
             if (m.isAnnotationPresent(Benchmark.class)) {
                 return createProxyObj();
             }
-
         }
+        
         return proxied;
 
     }
 
-    private Object createProxyObj() throws IllegalArgumentException {
+    protected Class getClazz() {
+    	return proxied.getClass();
+    }
+    
+    protected Object createProxyObj() throws IllegalArgumentException {
 
-        final Class<?> type = proxied.getClass();
+        final Class<?> type = getClazz();
 
         return Proxy.newProxyInstance(type.getClassLoader(),
                 type.getInterfaces(),
@@ -61,7 +64,8 @@ public class ProxyForBenchmarkAnnotation {
                                 }
                             }
                 });
-
     }
+    
+    
 
 }
