@@ -20,8 +20,8 @@ public class JPAWithoutSpringPizzaApp {
 		Address address = new Address(); 
 		address.setCity("Kyiv");
 		
+	
 		Customer customer = new Customer();
-//		customer.setId(new Integer(1));
 		customer.setName("Ivan");
 		customer.setAddress(address);
 		
@@ -29,12 +29,16 @@ public class JPAWithoutSpringPizzaApp {
 		em.persist(customer);
 		em.getTransaction().commit();
 		
-		System.out.println("persisted");
+//		Customer c = em.find(Customer.class, 1);
+//		Address a = c.getAddress();
+		em.clear();
+		Address a = em.find(Address.class, 1);
 		
-		System.out.println(em.find(Customer.class, 1));
+		System.out.println(a);
+		System.out.println(a.getCustomer());
 		
 			
-			em.close();
-			emf.close();
+		em.close();
+		emf.close();
 	}
 }
