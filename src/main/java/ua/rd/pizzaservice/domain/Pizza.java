@@ -1,8 +1,15 @@
 package ua.rd.pizzaservice.domain;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+
 
 /**
  *
@@ -12,13 +19,15 @@ import javax.persistence.Id;
 public class Pizza {
     
     public enum PizzaType {
-        SEA, MEAT, VEGETERIAN
+        SEA, MEAT, VEGAN
     }
-    
-    @Id 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private Double price;
+    @Enumerated(EnumType.ORDINAL)
+    
+    @Column(name = "pizza_type")
     private PizzaType type;
 
     public Pizza() {

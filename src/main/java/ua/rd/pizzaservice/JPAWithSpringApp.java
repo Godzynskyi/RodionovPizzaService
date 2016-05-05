@@ -1,27 +1,19 @@
 package ua.rd.pizzaservice;
 
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ua.rd.pizzaservice.domain.Customer;
-import ua.rd.pizzaservice.domain.Order;
 import ua.rd.pizzaservice.domain.Pizza;
 import ua.rd.pizzaservice.repository.PizzaRepository;
-import ua.rd.pizzaservice.service.OrderService;
-import ua.rd.pizzaservice.service.SimpleOrderService;
 
 /**
  *
  * @author andrii
  */
-public class SpringPizzaApp {
-
+public class JPAWithSpringApp {
     public static void main(String[] args) {
-
         ConfigurableApplicationContext repositoryContext
                 = new ClassPathXmlApplicationContext(
-                        "repositoryContext.xml"
+                        "repositoryMySQLContext.xml"
                 );
 
         ConfigurableApplicationContext appContext
@@ -33,22 +25,15 @@ public class SpringPizzaApp {
         
         PizzaRepository pr
                 = (PizzaRepository) appContext.getBean("pizzaRepository");
-        System.out.println(pr.getPizzaByID(1));
-
-        OrderService orderService = (OrderService) appContext.getBean("orderService");
-        System.out.println(orderService.getClass());
-        Order order = orderService.placeNewOrder(null, 1);
-
-        System.out.println(order);
-
-        Customer customer = appContext.getBean(Customer.class);
-        System.out.println(customer);
-
-        ApplicationContext parent = appContext.getParent();
-        System.out.println("Parent: " + parent);
-
+        Pizza pizza = new Pizza();
+        pizza.setName("Marg");
+        pizza.setPrice(123.4);
+        pizza.setType(Pizza.PizzaType.SEA);
+        pizza = pr.create(pizza);
+        
+        System.out.println(pr.getPizzaByID(pizza.getId()));
+        
         appContext.close();
         repositoryContext.close();
-
     }
 }

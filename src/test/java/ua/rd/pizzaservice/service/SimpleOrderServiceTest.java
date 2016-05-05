@@ -1,38 +1,33 @@
 package ua.rd.pizzaservice.service;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.*;
-
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ua.rd.pizzaservice.domain.Customer;
 import ua.rd.pizzaservice.domain.Order;
-import ua.rd.pizzaservice.domain.Pizza;
-import ua.rd.pizzaservice.repository.PizzaRepository;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("appContext.xml")
-public class SimpleOrderServiceTest {
-	
-//	@Autowired
-//	Customer customer;
-//	@Autowired
-//	OrderService orderService;
-//	
-//	@Test
-//	public void placeNewOrderTest() {
-//		
-//		Order order = orderService.placeNewOrder(customer, 1, 2, 2);
-//		
-//		int actual = order.getPizzas().size();
-//		int expected = 3;
-//		
-//		assertEquals(expected, actual);
-//	}
-	
+/**
+ *
+ * @author andrii
+ */
+@ContextConfiguration(locations = {
+    "classpath:/appContext.xml"},
+        inheritInitializers = true)
+public class SimpleOrderServiceTest extends RepositoryTestConifg {
+
+    @Autowired
+    private OrderService orderService;
+
+    @Test
+    public void testPlaceNewOrder() {
+        System.out.println("placeNewOrder");
+        Customer customer = null;
+        Integer[] pizzasID = new Integer[]{1};
+        Order result = orderService.placeNewOrder(customer, pizzasID);
+        System.out.println(result);
+    }
+
 }
