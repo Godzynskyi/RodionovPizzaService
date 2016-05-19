@@ -2,37 +2,36 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-        ">
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     
-    
-<!--    <bean id="customer" class="ua.rd.pizzaservice.domain.Customer" primary="true" >
-        <constructor-arg value="2"/>
-        <constructor-arg value="DEF"/>
-    </bean>      -->
-    
-    <bean class="ua.rd.pizzaservice.infrustructure.BenchmarkProxyBeanPostProcessor"/>
-    
-    <bean name="pizzaRepository" 
-          class="ua.rd.pizzaservice.repository.InMemPizzaRepository" 
-          init-method="cookPizzas" >
+       
+    <bean id="pizzaRepo"  class="ua.rd.deliveryservice.repository.InMemPizzaRepository"
+          init-method="init">
         <property name="pizzas">
-            <list>
-                <bean class="ua.rd.pizzaservice.domain.Pizza">
-                    <constructor-arg index="0" value="1"/>                        
-                    <constructor-arg index="1" value="Pizza 1"/>                
-                    <constructor-arg index="2" value="2.4"/> 
-                    <constructor-arg index="3" value="SEA"/>     
-                </bean>
-            </list>
+            <map>
+                <entry key="1">
+                    <bean class="ua.rd.deliveryservice.infrastructure.PizzaFactoryBean">
+                        <property name="id" value="1"/>
+                        <property name="name" value="Sea"/>
+                        <property name="type" value="SEA"/>
+                    </bean>
+                </entry>
+                <entry key="2">
+                    <bean class="ua.rd.deliveryservice.domain.Pizza">
+                        <constructor-arg value="2"/>
+                        <constructor-arg value="Meat"/>
+                        <constructor-arg value="MEAT"/>
+                    </bean> 
+                </entry>
+            </map>
         </property>
-    </bean>
+    </bean> 
     
+    <bean id="orderRepo" class="ua.rd.deliveryservice.repository.InMemOrderRepository" />
     
-    <bean name="orderRepository" 
-          class="ua.rd.pizzaservice.repository.InMemOrderRepository" />
-        
+   
 </beans>
