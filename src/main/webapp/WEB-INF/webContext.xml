@@ -30,7 +30,7 @@
                  view-class="org.springframework.web.servlet.view.JstlView"/>        
     </mvc:view-resolvers>
     
-    <context:component-scan base-package="ua.rd.deliveryservice.web"/>
+    <context:component-scan base-package="ua.rd.deliveryservice.web.html"/>
     
 <!--        <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">

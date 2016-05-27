@@ -1,4 +1,4 @@
-package ua.rd.deliveryservice.web;
+package ua.rd.deliveryservice.web.html;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;

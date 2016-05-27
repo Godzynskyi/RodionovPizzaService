@@ -1,4 +1,4 @@
-package ua.rd.deliveryservice.web;
+package ua.rd.deliveryservice.web.html;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
