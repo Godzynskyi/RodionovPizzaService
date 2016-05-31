@@ -1,8 +1,11 @@
-package ua.rd.deliveryservice.web;
+package ua.rd.deliveryservice.web.html;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -25,12 +28,16 @@ public class PizzaController {
     @Autowired
     private PizzaService pizzaService;
 
+    @Secured("ROLE_USER")
     @RequestMapping(value = "/pizzas", method = RequestMethod.GET)
     public String view(Model model) {
         model.addAttribute("pizzas", pizzaService.findAll());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(auth.getName());
         return "pizzas";
     }
 
+    @Secured("hasRole('ABC')")
     @RequestMapping(value = "/pizza", method = RequestMethod.GET)
     @ResponseBody
     public String viewById(@RequestParam("pizzaId") Integer pizzaId, Model model) {

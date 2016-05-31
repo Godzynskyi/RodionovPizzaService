@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.springframework.hateoas.ResourceSupport;
 
 /**
  *
@@ -15,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "pizzas")
-public class Pizza {
+public class Pizza extends ResourceSupport{
 
     public enum PizzaType {
 
