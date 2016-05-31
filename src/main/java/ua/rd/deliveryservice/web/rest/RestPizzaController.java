@@ -9,10 +9,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -29,6 +32,7 @@ public class RestPizzaController {
 
     @Autowired
     private PizzaService pizzaService;
+
 
     @RequestMapping("/user")
     public Principal user(Principal principal) {
@@ -49,10 +53,10 @@ public class RestPizzaController {
     @RequestMapping(value = "/pizza/{id}", method = RequestMethod.GET)
     public ResponseEntity<Pizza> find(@PathVariable Integer id) {
         Pizza pizza = pizzaService.find(id);
+        Link link = linkTo(methodOn(RestPizzaController.class).find(id)).withSelfRel();
         if (pizza == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Link link = linkTo(methodOn(RestPizzaController.class).find(id)).withSelfRel();
         pizza.add(link);
         
         return new ResponseEntity<>(pizza, HttpStatus.FOUND);
